@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://clna0mkmoqdle"]
+
+[ext_resource type="Script" path="res://Game Objects/Player/player.gd" id="1_3juox"]
+[ext_resource type="PackedScene" uid="uid://qqki4f1idp4p" path="res://Game Objects/Player/player_arms.tscn" id="2_aj7ey"]
+[ext_resource type="PackedScene" uid="uid://dn5717gtlhgqm" path="res://Modular Systems/Gun/gun_system.tscn" id="2_hfu2y"]
+[ext_resource type="PackedScene" uid="uid://c1118cqtdm1xd" path="res://UI/HUD/HUD.tscn" id="3_dowuy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2csj4"]
+size = Vector3(2.15, 3.651, 2.15)
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+collision_layer = 3
+script = ExtResource("1_3juox")
+
+[node name="Gun_System" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("2_hfu2y")]
+parent = NodePath("..")
+
+[node name="WorldCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -0.0402107, 1.82068, -0.0722656)
+shape = SubResource("BoxShape3D_2csj4")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.05961, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.165089, -0.01)
+fov = 80.0
+
+[node name="Flashlight" type="SpotLight3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0233119, 0.01)
+light_energy = 5.224
+light_indirect_energy = 3.072
+light_size = 0.36
+spot_range = 54.34
+spot_angle = 21.6396
+
+[node name="Hand" type="Node3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.165089, 0.01)
+
+[node name="Player_Arms" parent="Head/Camera3D/Hand" instance=ExtResource("2_aj7ey")]
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, -3.152, -0.2)
+
+[node name="Bullet_RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
+enabled = false
+target_position = Vector3(0, 0, -40)
+collision_mask = 3
+
+[node name="Interact_RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
+visible = false
+target_position = Vector3(0, 0, -2)
+collision_mask = 3
+
+[node name="Clipping_RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
+visible = false
+target_position = Vector3(0, 0, -3)
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.165089, 0.01)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("3_dowuy")]

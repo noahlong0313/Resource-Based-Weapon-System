@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://e5l011g64cju"]
+
+[ext_resource type="Texture2D" uid="uid://b6x4nn6ubouno" path="res://Game Objects/Guns/Meshes/wood.jpg" id="1_fl3fy"]
+
+[resource]
+resource_name = "grip"
+cull_mode = 2
+albedo_texture = ExtResource("1_fl3fy")
+roughness = 0.5

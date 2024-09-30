@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dwhvf5s5jjweu"
+path="res://.godot/imported/reload_pistol_2.wav-cae2e2f895b2ff31bb4c8a9fb721ab26.sample"
+
+[deps]
+
+source_file="res://Sound Effects/Guns/reload_pistol_2.wav"
+dest_files=["res://.godot/imported/reload_pistol_2.wav-cae2e2f895b2ff31bb4c8a9fb721ab26.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://clna0mkmoqdle"]
+
+[ext_resource type="Script" path="res://Game Objects/Player/player.gd" id="1_3juox"]
+[ext_resource type="PackedScene" uid="uid://qqki4f1idp4p" path="res://Game Objects/Player/player_arms.tscn" id="2_aj7ey"]
+[ext_resource type="PackedScene" uid="uid://c1118cqtdm1xd" path="res://UI/HUD/HUD.tscn" id="3_dowuy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ls10m"]
+radius = 1.34716
+height = 3.61966
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+collision_layer = 3
+script = ExtResource("1_3juox")
+
+[node name="WorldCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -0.0402107, 1.82068, -0.0722656)
+shape = SubResource("CapsuleShape3D_ls10m")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.05961, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.165089, -0.01)
+fov = 65.0
+
+[node name="Hand" type="Node3D" parent="Head/Camera3D"]
+
+[node name="Player_Arms" parent="Head/Camera3D/Hand" instance=ExtResource("2_aj7ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.22525, 0.230472)
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.165089, 0.01)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("3_dowuy")]

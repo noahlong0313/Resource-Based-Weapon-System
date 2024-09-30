@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://bl6qblmcss6gs"]
+
+[ext_resource type="Script" path="res://World/world.gd" id="1_1j1r1"]
+[ext_resource type="PackedScene" uid="uid://clna0mkmoqdle" path="res://Game Objects/Player/player.tscn" id="1_dssu3"]
+[ext_resource type="PackedScene" uid="uid://de1gebfnxt8qp" path="res://UI/pause_menu/pause_menu.tscn" id="3_ou8u8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_khsqh"]
+albedo_color = Color(0.45646, 0.58, 0.1682, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w1ub7"]
+
+[sub_resource type="Sky" id="Sky_i5b57"]
+sky_material = SubResource("ProceduralSkyMaterial_w1ub7")
+
+[sub_resource type="Environment" id="Environment_cnbec"]
+background_mode = 2
+sky = SubResource("Sky_i5b57")
+tonemap_mode = 2
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_1j1r1")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0.000518293, -0.000300032, -0.000518144, 1, 0.00053479, 0.000300289, -0.000534647, 1, -0.0632629, -0.0762939, 0.00292206)
+use_collision = true
+size = Vector3(100, 0.153, 100)
+material = SubResource("StandardMaterial3D_khsqh")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.29459, 0.516495, -41.9208)
+use_collision = true
+size = Vector3(5.42468, 1.03299, 14.0698)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.986, 8.677, 25.5991)
+use_collision = true
+size = Vector3(1, 17.3202, 47.8938)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.2556, 8.677, 25.3657)
+use_collision = true
+size = Vector3(11.7993, 17.3202, 47.8938)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.7974, 1.0604, -37.7934)
+use_collision = true
+size = Vector3(39.3673, 2.1208, 27.7771)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 12.4429, 0, 1, 0, -1, 0, -5.43899e-07, 49.3071, 1.75362, -2.31534)
+use_collision = true
+collision_mask = 3
+polygon = PackedVector2Array(-3.69235, -1.73171, -3.65297, 15.5311, 19.9695, 1.91574, 19.6839, -1.81206)
+
+[node name="Player" parent="." instance=ExtResource("1_dssu3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.0245, 0, 41.7216)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cnbec")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.418966, 0.900749, 0.114535, 0.00452016, -0.124069, 0.992263, 0.907991, 0.416243, 0.0479092, 0, 0, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("3_ou8u8")]
+visible = false

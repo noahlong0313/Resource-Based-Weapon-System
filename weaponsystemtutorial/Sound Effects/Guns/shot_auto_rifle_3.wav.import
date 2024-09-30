@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b7lm3uj58eypn"
+path="res://.godot/imported/shot_auto_rifle_3.wav-953c85a4304e828ebfec9091a8c01dda.sample"
+
+[deps]
+
+source_file="res://Sound Effects/Guns/shot_auto_rifle_3.wav"
+dest_files=["res://.godot/imported/shot_auto_rifle_3.wav-953c85a4304e828ebfec9091a8c01dda.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

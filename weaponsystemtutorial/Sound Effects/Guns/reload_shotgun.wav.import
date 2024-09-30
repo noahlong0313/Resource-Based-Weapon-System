@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cpy25w8khvjgu"
+path="res://.godot/imported/reload_shotgun.wav-f4f5774bd4239427ea6f7a539c36144d.sample"
+
+[deps]
+
+source_file="res://Sound Effects/Guns/reload_shotgun.wav"
+dest_files=["res://.godot/imported/reload_shotgun.wav-f4f5774bd4239427ea6f7a539c36144d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
