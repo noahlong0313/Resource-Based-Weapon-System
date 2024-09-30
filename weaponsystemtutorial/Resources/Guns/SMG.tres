@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Gun" load_steps=9 format=3 uid="uid://c5glypic80f3n"]
+
+[ext_resource type="AudioStream" uid="uid://0fk4qktm85x6" path="res://Sound Effects/Guns/shot_dry.wav" id="1_o8iqn"]
+[ext_resource type="AudioStream" uid="uid://dq23q280qxu1e" path="res://Sound Effects/Guns/shot_auto_rifle_1.wav" id="2_1eqsk"]
+[ext_resource type="AudioStream" uid="uid://dff8my5yvxdtu" path="res://Sound Effects/Guns/shot_auto_rifle_2.wav" id="3_1tslu"]
+[ext_resource type="Script" path="res://Resources/GunResource.gd" id="4_cea05"]
+[ext_resource type="AudioStream" uid="uid://b7lm3uj58eypn" path="res://Sound Effects/Guns/shot_auto_rifle_3.wav" id="4_f5taw"]
+[ext_resource type="AudioStream" uid="uid://dis3ik4pgfrt7" path="res://Sound Effects/Guns/shot_auto_rifle_4.wav" id="5_2re66"]
+[ext_resource type="ArrayMesh" uid="uid://k0l3kq0xrgv6" path="res://Game Objects/Guns/player_arms_smg.tres" id="6_rgc4b"]
+[ext_resource type="AudioStream" uid="uid://cxfnwklnfhmig" path="res://Sound Effects/Guns/reload_smg.wav" id="7_v61b2"]
+
+[resource]
+script = ExtResource("4_cea05")
+type = 3
+ammo = "smg"
+mesh = ExtResource("6_rgc4b")
+cooldown = 0.12
+sway = 0.18
+automatic = true
+firing_sounds = Array[AudioStream]([ExtResource("2_1eqsk"), ExtResource("3_1tslu"), ExtResource("4_f5taw"), ExtResource("5_2re66")])
+reload_sound = ExtResource("7_v61b2")
+dry_fire_sound = ExtResource("1_o8iqn")
+damage = 15
+spread = 1.5
+max_mag = 30
+bullet_amt = 1
+bullet_range = 65

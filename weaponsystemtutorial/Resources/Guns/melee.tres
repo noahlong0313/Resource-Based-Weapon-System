@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Gun" load_steps=5 format=3 uid="uid://hgy278vw0iio"]
+
+[ext_resource type="AudioStream" uid="uid://0fk4qktm85x6" path="res://Sound Effects/Guns/shot_dry.wav" id="1_d1i8f"]
+[ext_resource type="AudioStream" uid="uid://tl7kvp8204ni" path="res://Sound Effects/melee_swing.mp3" id="2_10ena"]
+[ext_resource type="Script" path="res://Resources/GunResource.gd" id="2_v6b7x"]
+[ext_resource type="ArrayMesh" uid="uid://dql1chfjt88dt" path="res://Game Objects/Guns/player_arms_knife.tres" id="3_hhdcx"]
+
+[resource]
+script = ExtResource("2_v6b7x")
+type = 0
+ammo = "melee"
+mesh = ExtResource("3_hhdcx")
+cooldown = 0.15
+sway = 0.1
+automatic = false
+firing_sounds = Array[AudioStream]([ExtResource("2_10ena")])
+dry_fire_sound = ExtResource("1_d1i8f")
+damage = 35
+spread = 0.0
+max_mag = 1
+bullet_amt = 1
+bullet_range = 8

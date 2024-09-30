@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Gun" load_steps=6 format=3 uid="uid://c20whnwp4sq7l"]
+
+[ext_resource type="AudioStream" uid="uid://0fk4qktm85x6" path="res://Sound Effects/Guns/shot_dry.wav" id="1_ksoyg"]
+[ext_resource type="AudioStream" uid="uid://b0jl4svgsb5ru" path="res://Sound Effects/Guns/shot_pistol.wav" id="2_alsl0"]
+[ext_resource type="ArrayMesh" uid="uid://uuwbgxxa7eka" path="res://Game Objects/Guns/player_arms_revolver.tres" id="3_edq7n"]
+[ext_resource type="AudioStream" uid="uid://dwhvf5s5jjweu" path="res://Sound Effects/Guns/reload_pistol_2.wav" id="4_b12if"]
+[ext_resource type="Script" path="res://Resources/GunResource.gd" id="4_ca2yk"]
+
+[resource]
+script = ExtResource("4_ca2yk")
+type = 1
+ammo = "revolver"
+mesh = ExtResource("3_edq7n")
+cooldown = 0.2
+sway = 0.15
+automatic = false
+firing_sounds = Array[AudioStream]([ExtResource("2_alsl0")])
+reload_sound = ExtResource("4_b12if")
+dry_fire_sound = ExtResource("1_ksoyg")
+damage = 45
+spread = 1.25
+max_mag = 6
+bullet_amt = 1
+bullet_range = 60

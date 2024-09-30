@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://qqki4f1idp4p"]
+[gd_scene load_steps=7 format=3 uid="uid://qqki4f1idp4p"]
 
+[ext_resource type="Script" path="res://Game Objects/Player/player_arms.gd" id="1_jleyg"]
 [ext_resource type="ArrayMesh" uid="uid://uuwbgxxa7eka" path="res://Game Objects/Guns/player_arms_revolver.tres" id="2_f0ndi"]
 
 [sub_resource type="Animation" id="Animation_odijc"]
@@ -60,43 +61,43 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_p4noc"]
 resource_name = "reload"
 length = 2.0
-tracks/0/type = "method"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("..")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"reload_finished"
-}]
+"times": PackedFloat32Array(0, 0.233333, 0.566667, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -3, 0), Vector3(0, -3, 0), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
+tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.233333, 0.566667, 1.8, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -3, 0), Vector3(0, -3, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.169437, 0, 0), Vector3(-1.02102, 0, 0), Vector3(-1.02102, 0, 0), Vector3(0, 0, 0)]
 }
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation")
+tracks/2/path = NodePath("..")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.566667, 1.8, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.169437, 0, 0), Vector3(-1.02102, 0, 0), Vector3(-1.02102, 0, 0), Vector3(0, 0, 0)]
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reload_finished"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jp7bq"]
@@ -107,6 +108,7 @@ _data = {
 }
 
 [node name="Player_Arms" type="Node3D"]
+script = ExtResource("1_jleyg")
 
 [node name="Arms_Mesh" type="MeshInstance3D" parent="."]
 layers = 2

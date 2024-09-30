@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b67iqg8fviwg2"]
+
+[ext_resource type="Script" path="res://Systems/gun_system.gd" id="1_h4jxv"]
+
+[node name="GunSystem" type="Node"]
+script = ExtResource("1_h4jxv")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

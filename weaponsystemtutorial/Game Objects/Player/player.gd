@@ -8,6 +8,13 @@ class_name Player
 @onready var player_arms : Node3D = $Head/Camera3D/Hand/Player_Arms
 @onready var audio_listener : AudioListener3D = $Head/Camera3D/AudioListener3D
 
+#System Nodes
+@onready var gun : Node = $GunSystem
+
+#Raycast
+@onready var bullet_raycast : RayCast3D = $Head/Camera3D/Bullet_RayCast3D
+
+
 #Stats
 var speed : int = 15
 var moving : bool = false
@@ -15,6 +22,24 @@ var jump_velocity : int = 15
 var dead : bool = false
 var health : int = 100
 var max_health : int = 100
+
+#Guns
+var current_gun : Gun = REVOLVER
+var can_shoot : bool = true
+var is_reloading : bool = false
+var current_bullets : int = current_gun.max_mag
+
+const MELEE = preload("res://Resources/Guns/melee.tres")
+const REVOLVER = preload("res://Resources/Guns/Revolver.tres")
+const SHOTGUN = preload("res://Resources/Guns/Shotgun.tres")
+const SMG = preload("res://Resources/Guns/SMG.tres")
+
+var ammo : Dictionary = {
+	"melee" : 1,
+	"revolver" : 200,
+	"shotgun" : 200,
+	"smg" : 200,
+}
 
 
 # Movement Var
@@ -45,6 +70,7 @@ const SPRINT_FOV : float = 75.0
 func _ready():
 	#Send global referenve
 	Global.PlayerRef = self
+	gun.player_ready()
 	
 	#Set Camera and Ears
 	camera.current = true
@@ -66,13 +92,39 @@ func _input(event: InputEvent) -> void:
 		camera.rotate_x(-event.relative.y * GameSettings.mouse_sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-80), deg_to_rad(60))
 	
+	#Swap Guns
+	if event.is_action_pressed("gun_slot_1") and is_reloading == false and Global.check_menus() == false:
+		switch_weapon(MELEE)
+	
+	if event.is_action_pressed("gun_slot_2") and is_reloading == false and Global.check_menus() == false:
+		switch_weapon(REVOLVER)
+	
+	if event.is_action_pressed("gun_slot_3") and is_reloading == false and Global.check_menus() == false:
+		switch_weapon(SHOTGUN)
+	
+	if event.is_action_pressed("gun_slot_4") and is_reloading == false and Global.check_menus() == false:
+		switch_weapon(SMG)
+	
 	#Pause Menu
 	if event.is_action_pressed("pause"):
 		Global.PauseRef.pause_menu()
+	
+	#Reload
+	if event.is_action_pressed("reload") and Global.check_menus() == false:
+		gun.reload()
 
 
 ## Process | On Tick
 func _physics_process(delta: float):
+	#Gun
+	#Semi-Automatic
+	if Input.is_action_just_pressed("shoot") and current_gun.automatic == false and Global.check_menus() == false:
+		gun.shoot()
+	#Automatic
+	if Input.is_action_pressed("shoot") and current_gun.automatic == true and Global.check_menus() == false:
+		gun.shoot()
+	
+	
 	# Add the gravity.
 	check_falling()
 	
@@ -202,3 +254,30 @@ func change_health(value : int):
 
 func death():
 	print("you're dead")
+
+
+## Actions
+func switch_weapon(new_weapon : Gun):
+	if new_weapon == current_gun: #Do nothing if already using that gun
+		return
+	
+	#Add bullets back to total ammo count
+	ammo[current_gun.ammo] += current_bullets
+	current_bullets = 0
+	
+	#Switch gun resource
+	current_gun = new_weapon
+	
+	#Set in-game mesh
+	player_arms.update_mesh(current_gun.mesh)
+	
+	#Load bullets into new gun
+	match ammo[current_gun.ammo] >= current_gun.max_mag: #Check if the player has enough ammo to fill the mag
+		true: #Fill Mag
+			current_bullets = current_gun.max_mag
+			ammo[current_gun.ammo] -= current_gun.max_mag
+		false: #Paritially Fill Mag
+			current_bullets += ammo[current_gun.ammo]
+			ammo[current_gun.ammo] = 0
+	
+	Global.update_hud.emit()
