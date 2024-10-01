@@ -12,4 +12,4 @@ Includes:
 
 -------------------------------------------------------------------
 
-Tutorial Link : *Coming Soon*
+[Tutorial Link](https://youtu.be/M6HqcOeXcg0)
